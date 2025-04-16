@@ -9,13 +9,15 @@ interface CardCategoriasProps{
 function CardCategoria({categoria}: CardCategoriasProps) {
   return (
     <div>
-        <header>{categoria.nome}</header>
+        <header>Categoria Título</header>
         <p>{categoria.descricao}</p>
         <div>
-            <Link to={`/editarcategoria/${categoria.id}`}>
+            {/* {`/editarcategoria/${categoria.id}`} */}
+            <Link to=''>
                 <button><PencilSimpleLine size={32} /></button>
             </Link>
-            <Link to={`/deletarcategoria/`}>
+            {/* {`/deletarcategoria/`} */}
+            <Link to=''>
                 <button><Trash size={32} /></button>
             </Link>
         </div>
