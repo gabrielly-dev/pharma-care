@@ -7,8 +7,8 @@ function Navbar() {
                 <div>Farmácia</div>
                 <div className="flex flex-row gap-10">
                     <p>Home</p>
-                    <Link to='/categorias'>Categorias</Link>
-                    <p>Produtos</p>
+                    <Link to='/categorias'>Lista de Categorias</Link>
+                    <Link to='/cadastrarcategoria'>Cadastrar Categoria</Link>
                 </div>
             </div>
         </div>

@@ -24,8 +24,6 @@ function ListaCategoria() {
         buscarCategorias()    
     }, [categorias.length])
 
-    console.log(categorias)
-
   return (
     <div>
         {categorias.length === 0 && (
@@ -44,9 +42,9 @@ function ListaCategoria() {
             </div>
 
             <div>
-                {/* {categorias.map((categoria) => (
+                {categorias.map((categoria) => (
                     <CardCategoria key={categoria.id} categoria={categoria}/>
-                ))} */}
+                ))}
             </div>
         </div>
      
