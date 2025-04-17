@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Categoria from '../../../models/Categoria'
 import CardCategoria from '../cardcategoria/CardCategoria'
 import { buscar } from '../../../services/Service'
-import { MutatingDots } from 'react-loader-spinner'
+import { MutatingDots, RotatingLines } from 'react-loader-spinner'
 
 function ListaCategoria() {
 
@@ -25,29 +25,30 @@ function ListaCategoria() {
     }, [categorias.length])
 
   return (
-    <div>
-        {categorias.length === 0 && (
-            <MutatingDots
-            visible={true}
-            height="200"
-            width="200"
-            ariaLabel="dna-loading"
-            wrapperStyle={{}}
-            wrapperClass="dna-wrapper mx-auto"
-        />
-        )}
-        <div>
-            <div>
-                <p>Nossas Categorias</p>
-            </div>
+    <div className='flex justify-center'>
+        
+        <div className='container'>
+            {categorias.length === 0 && (
+                <RotatingLines
+                    strokeColor="white"
+                    strokeWidth="5"
+                    animationDuration="0.75"
+                    width="24"
+                    visible={true}
+                />
+            )}
+            <div className='flex flex-col py-15 gap-10'>
+                <div className='text-3xl font-bold'>
+                    <h1>Nossas Categorias</h1>
+                </div>
 
-            <div>
-                {categorias.map((categoria) => (
-                    <CardCategoria key={categoria.id} categoria={categoria}/>
-                ))}
+                <div className='grid grid-cols-4 gap-10'>
+                    {categorias.map((categoria) => (
+                        <CardCategoria key={categoria.id} categoria={categoria}/>
+                    ))}
+                </div>
             </div>
         </div>
-     
 
     </div>
   )

@@ -1,8 +1,8 @@
 import { ChangeEvent, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom"
 import Categoria from "../../../models/Categoria";
 import { atualizar, buscar, cadastrar } from "../../../services/Service";
-import { MutatingDots } from "react-loader-spinner";
+import { RotatingLines } from "react-loader-spinner";
+import { useNavigate, useParams } from "react-router-dom";
 
 function FormCategoria() {
 
@@ -38,6 +38,11 @@ function FormCategoria() {
         navigate("/categorias")
     }
 
+    function cancelar() {
+        alert('Solicitação Cancelada.')
+        navigate("/categorias")
+    }
+
     async function gerarNovaCategoria(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault()
         setIsLoading(true)
@@ -64,31 +69,45 @@ function FormCategoria() {
     }
 
     return (
-    <div className="flex justify-center">
-        <div className="container">
-            <div>
-                <h1>{id === undefined ? 'Cadastrar Nova Categoria' : 'Alterar Categoria Existente'}</h1>
+    <div className="flex justify-center w-full items-center py-25 h-211">
+        <div className="container flex justify-center box-content">
+            <div className=" border border-solid border-gray-300 h-130 flex flex-col justify-evenly items-center text-2xl  text-purple-800 w-150 rounded-2xl">
+                <h1 className="font-bold">{id === undefined ? 'Cadastrar Nova Categoria' : 'Alterar Categoria Existente'}</h1>
 
-                <form onSubmit={gerarNovaCategoria}>
-                    <div>
+                <form onSubmit={gerarNovaCategoria} className="flex flex-col h-90 justify-evenly">
+                    <div className="flex flex-col text-lg text-black font-medium gap-2">
                         <label htmlFor="nome">Nome</label>
-                        <input  type="text" placeholder="Nome da categoria" name="nome" />
+                        <input  
+                            type="text" 
+                            placeholder="Nome da categoria" 
+                            name="nome"
+                            value={categoria.nome}
+                            onChange={(e:ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                            className="text-gray-500 border border-solid border-gray-300 p-3 w-130 rounded-lg font-normal"
+                        />
                     </div>
-                    <div>
+                    <div className="flex flex-col text-lg text-black font-medium gap-2">
                         <label htmlFor="descricao">Descrição</label>
-                        <input  type="text" placeholder="Descrição da categoria" name="descricao" />
+                        <input  
+                            type="text" 
+                            placeholder="Descrição da categoria" 
+                            name="descricao" 
+                            value={categoria.descricao}
+                            onChange={(e:ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                            className="text-gray-500 border border-solid border-gray-300 p-3 w-130 rounded-lg font-normal"
+                        />
                     </div>
-                    <div>
-                        <Link to='/categorias'>Cancelar</Link>
-                        <button type="submit">
+                    <div className=" text-lg font-bold flex flex-row gap-4">
+                        <button type="reset" onClick={cancelar} className="border border-solid border-gray-300 w-50 text-black p-2 rounded-lg cursor-pointer hover:shadow-xl">Cancelar</button>
+                        <button type="submit" className="bg-black w-76 text-white p-2 rounded-lg cursor-pointer hover:shadow-xl">
                         {isLoading ?
-                            <MutatingDots
+                            <RotatingLines
+                                strokeColor="white"
+                                strokeWidth="5"
+                                animationDuration="0.75"
+                                width="24"
                                 visible={true}
-                                height="200"
-                                width="200"
-                                ariaLabel="dna-loading"
-                                wrapperStyle={{}}
-                                wrapperClass="dna-wrapper mx-auto"/> :
+                            /> :
 
                             <span>{id === undefined ? 'Cadastrar' : 'Atualizar'}</span>
 
