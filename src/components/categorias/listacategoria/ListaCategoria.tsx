@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Categoria from '../../../models/Categoria'
 import CardCategoria from '../cardcategoria/CardCategoria'
 import { buscar } from '../../../services/Service'
-import { MutatingDots, RotatingLines } from 'react-loader-spinner'
+import { RotatingLines } from 'react-loader-spinner'
 
 function ListaCategoria() {
 
